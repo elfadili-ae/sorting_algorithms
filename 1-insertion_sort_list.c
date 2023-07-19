@@ -50,28 +50,26 @@ void sortBackward(listint_t **list, listint_t *node)
 {
 	listint_t *tmp;
 
-	if (node != NULL || node->prev != NULL)
-		while (node->prev != NULL)
+	if (node != NULL && node->prev != NULL)
+	{
+		if (node->n < node->prev->n)
 		{
-			if (node->n < node->prev->n)
-			{
-				tmp = node->prev;
-				tmp->next = node->next;
-				node->prev = tmp->prev;
-				node->next = tmp;
-				tmp->prev = node;
-				tmp->next->prev = tmp;
-				if (node->prev != NULL)
-					node->prev->next = node;
-				else
-					*list = node;
-
-				print_list(*list);
-				if (node->prev != NULL)
-					sortBackward(list, node);
-			}
+			tmp = node->prev;
+			tmp->next = node->next;
+			node->prev = tmp->prev;
+			node->next = tmp;
+			tmp->prev = node;
+			tmp->next->prev = tmp;
+			if (node->prev != NULL)
+				node->prev->next = node;
 			else
-				return;
+				*list = node;
+			print_list(*list);
+			if (node->prev != NULL)
+				sortBackward(list, node);
 		}
+		else
+			return;
+	}
 	return;
 }
