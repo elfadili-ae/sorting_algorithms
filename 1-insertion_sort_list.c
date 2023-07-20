@@ -27,7 +27,7 @@ void insertion_sort_list(listint_t **list)
 			tmp->prev = prev;
 			prev->next = tmp;
 			if (prev->prev != NULL)
-				prev->prev->next =prev;
+				prev->prev->next = prev;
 			else
 				*list = prev;
 
@@ -42,8 +42,9 @@ void insertion_sort_list(listint_t **list)
 	}
 }
 
- /**
- * sortbackward - sort node going backward of the list
+/**
+ * sortBackward - sort node going backward of the list
+ * @list: doubbly linked list
  * @node: node to sort
  */
 void sortBackward(listint_t **list, listint_t *node)
@@ -71,5 +72,4 @@ void sortBackward(listint_t **list, listint_t *node)
 		else
 			return;
 	}
-	return;
 }
