@@ -17,14 +17,14 @@ void counting_sort(int *array, size_t size)
 		if (largest < array[i])
 			largest = array[i];
 
-	countArr = malloc(sizeof(int) * largest);
-	for (i = 0; i < (size_t)largest; i++)
+	countArr = malloc(sizeof(int) * (largest + 1));
+	for (i = 0; i <= (size_t)largest; i++)
 		countArr[i] = 0;
 
 	for (i = 0; i < size; i++)
 		countArr[array[i]] += 1;
 
-	for (i = 0; i < (size_t)largest; i++)
+	for (i = 0; i <= (size_t)largest; i++)
 		countArr[i + 1] += countArr[i];
 
 	print_array(countArr, largest + 1);
