@@ -11,7 +11,7 @@ void cocktail_sort_list(listint_t **list)
 	int shuffled = 1;
 	listint_t *current = *list, *tmp;
 
-	if (list == NULL || (*list)->next == NULL)
+	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
 
 	do {
