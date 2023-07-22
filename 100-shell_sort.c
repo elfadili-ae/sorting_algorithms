@@ -1,7 +1,6 @@
 #include "sort.h"
 
 void swap(int *i, int *j);
-int _pow(int x, int y);
 
 /**
  * shell_sort - sort an array using Shell algorithm
@@ -10,39 +9,27 @@ int _pow(int x, int y);
  */
 void shell_sort(int *arr, size_t size)
 {
-	size_t i, gap, flag = 0;
+	size_t i, j, gap = 1;
 
 	if (arr == NULL || size < 2)
 		return;
 
-	for (gap = (_pow(3, size) - 1) / 2; gap > 0; gap /= 2)
+	while (gap < (size / 3))
+		gap = gap * 3 + 1;
+
+	for (; gap > 0; gap /= 3)
 	{
-		flag = 0;
-		for (i = 0; i < size; i++)
+		for (i = gap; i < size; i++)
 		{
-			if ((gap + i) >= size)
-				break;
-			if (arr[i] > arr[gap + i])
+			for (j = i; j >= gap; j -= gap)
 			{
-				flag = 1;
-				swap(&arr[i], &arr[gap + i]);
+				if (arr[j] > arr[j - gap])
+					break;
+				swap(&arr[j], &arr[j - gap]);
 			}
 		}
-		if (flag)
-			print_array(arr, size);
-	}
-
-	flag = 0;
-	for (i = 0; i < size - 1; i++)
-	{
-		if (arr[i] > arr[1 + i])
-		{
-			flag = 1;
-			swap(&arr[i], &arr[1 + i]);
-		}
-	}
-	if (flag)
 		print_array(arr, size);
+	}
 }
 
 
@@ -58,20 +45,4 @@ void swap(int *i, int *j)
 	tmp = *i;
 	*i = *j;
 	*j = tmp;
-}
-
-/**
- * _pow - calculate the power of a number
- * @x: number
- * @y: power
- * Return: @n power of @y
- */
-int _pow(int x, int y)
-{
-
-	if (y == 0)
-		return (1);
-	if (y > 0)
-		return (x * _pow(x, y - 1));
-	return (-1);
 }
