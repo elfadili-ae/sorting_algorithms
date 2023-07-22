@@ -23,6 +23,8 @@ void cocktail_sort_list(listint_t **list)
 				shuffled = 1;
 				tmp = current->next;
 				swapNode(current, tmp);
+				if (tmp->prev == NULL)
+					(*list) = tmp;
 
 				print_list(*list);
 			}
