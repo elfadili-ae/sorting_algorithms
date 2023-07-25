@@ -9,14 +9,14 @@ void swapNode(listint_t *this, listint_t *that);
 void cocktail_sort_list(listint_t **list)
 {
 	int shuffled = 1;
-	listint_t *current = *list, *tmp;
+	listint_t *current = *list, *tmp, *rHead = NULL, *rTail = NULL;
 
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
 
 	do {
 		shuffled = 0;
-		while (current->next)
+		while (current->next != rTail)
 		{
 			if (current->n > current->next->n)
 			{
@@ -31,10 +31,11 @@ void cocktail_sort_list(listint_t **list)
 			else
 				current = current->next;
 		}
+		rTail = current;
 		if (!shuffled)
 			break;
 		shuffled = 0;
-		while (current->prev)
+		while (current->prev != rHead)
 		{
 			if (current->n < current->prev->n)
 			{
@@ -49,6 +50,7 @@ void cocktail_sort_list(listint_t **list)
 			else
 				current = current->prev;
 		}
+		rHead = current;
 	} while (shuffled);
 }
 
