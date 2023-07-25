@@ -37,7 +37,7 @@ void siftDown(int *array, size_t size, int root, int last)
 		swap(&array[bigger], &array[root]);
 
 		print_array(array, size);
-		siftDown(array, size, last, bigger);
+		siftDown(array, size, bigger, last);
 	}
 }
 
@@ -55,7 +55,7 @@ void heap_sort(int *array, size_t size)
 
 	for (k = size / 2 - 1; k >= 0; k--)
 	{
-		siftDown(array, size, k, size - 1);
+		siftDown(array, size, k, size);
 	}
 
 	for (k = size - 1; k > 0; k--)
@@ -63,6 +63,6 @@ void heap_sort(int *array, size_t size)
 		swap(&array[k], &array[0]);
 
 		print_array(array, size);
-		siftDown(array, size, 0, k - 1);
+		siftDown(array, size, 0, k);
 	}
 }
