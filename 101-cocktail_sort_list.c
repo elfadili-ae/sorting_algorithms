@@ -14,7 +14,8 @@ void cocktail_sort_list(listint_t **list)
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
 
-	do {
+	while (shuffled)
+	{
 		shuffled = 0;
 		while (current->next != rTail)
 		{
@@ -34,6 +35,7 @@ void cocktail_sort_list(listint_t **list)
 		rTail = current;
 		if (!shuffled)
 			break;
+
 		shuffled = 0;
 		while (current->prev != rHead)
 		{
@@ -51,7 +53,7 @@ void cocktail_sort_list(listint_t **list)
 				current = current->prev;
 		}
 		rHead = current;
-	} while (shuffled);
+	}
 }
 
 /**
