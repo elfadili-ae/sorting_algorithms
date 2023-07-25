@@ -1,5 +1,18 @@
 #include "sort.h"
 
+/**
+ * swap - swap to elements of an array
+ * @i: element index
+ * @j: element index
+ */
+void swap(int *i, int *j)
+{
+	int tmp;
+
+	tmp = *i;
+	*i = *j;
+	*j = tmp;
+}
 
 /**
  * siftDown - sift new first element to its appropriate index
@@ -12,7 +25,7 @@ void siftDown(int *array, size_t size, int root, int last)
 {
 	int left = 2 * root + 1;
 	int right =  2 * root + 2;
-	int bigger = root, tmp;
+	int bigger = root;
 
 	if (left < last && array[left] > array[bigger])
 		bigger = left;
@@ -21,9 +34,7 @@ void siftDown(int *array, size_t size, int root, int last)
 
 	if (bigger != root)
 	{
-		tmp = array[bigger];
-		array[bigger] = array[root];
-		array[root] = tmp;
+		swap(&array[bigger], &array[root]);
 
 		print_array(array, size);
 		siftDown(array, size, last, bigger);
@@ -37,7 +48,7 @@ void siftDown(int *array, size_t size, int root, int last)
  */
 void heap_sort(int *array, size_t size)
 {
-	int k, tmp;
+	int k;
 
 	if (array == NULL || size < 2)
 		return;
@@ -49,9 +60,8 @@ void heap_sort(int *array, size_t size)
 
 	for (k = size - 1; k > 0; k--)
 	{
-		tmp = array[k];
-		array[k] = array[0];
-		array[0] = tmp;
+		swap(&array[k], &array[0]);
+
 		print_array(array, size);
 		siftDown(array, size, 0, k - 1);
 	}
