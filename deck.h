@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 /**
  * enum kind_e - num of cards.
  * @SPADE: Spades
